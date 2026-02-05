@@ -34,7 +34,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       {/* 12 grid: logo(2) | nav+arama(7) | ikonlar(3) — ayarlama için col-span değiştirilebilir */}
-      <div className="grid h-14 grid-cols-12 items-center gap-2 px-4 md:gap-4 md:px-6">
+      <div className="grid h-14 grid-cols-12 items-center gap-2 px-10 md:gap-4 md:px-12">
         {/* 1–2: Logo — kalın (bold) SHOP.CO */}
         <div className="col-span-2 flex items-center">
           <Link

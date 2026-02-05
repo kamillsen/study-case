@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/product-card";
 import { BrowseByDressStyleSection } from "@/components/home/browse-by-dress-style";
+import { TestimonialsSection } from "@/components/home/testimonials-section";
 
 /**
  * Sitenin ana ekranı — ana sayfada render edilen bileşen.
@@ -9,14 +10,14 @@ import { BrowseByDressStyleSection } from "@/components/home/browse-by-dress-sty
  */
 export function HomeScreen() {
   return (
-    <div className="col-span-12 -mx-4 -mt-6 flex flex-col md:-mx-6 md:-mt-6">
+    <div className="col-span-12 -mx-10 -mt-6 flex flex-col md:-mx-12 md:-mt-6">
       {/* HERO SECTION — Header ve sağ/sol kenarlara yaslı, köşeler düz */}
       <section
         className="relative min-h-[85vh] w-full overflow-hidden bg-cover bg-right bg-no-repeat"
         style={{ backgroundImage: "url(/img/image.png)" }}
       >
-        {/* Layout ile aynı hiza: main grid px-4 md:px-6 → içerik ml-4 + w calc(100%-2*px) */}
-        <div className="relative ml-4 grid min-h-[85vh] w-[calc(100%-2rem)] grid-cols-12 items-center gap-10 py-8 md:ml-6 md:gap-12 md:w-[calc(100%-3rem)] lg:py-12">
+        {/* Layout ile aynı hiza: kenar boşluğu = grid gap (2.5rem / 3rem) */}
+        <div className="relative ml-10 grid min-h-[85vh] w-[calc(100%-5rem)] grid-cols-12 items-center gap-10 py-8 md:ml-12 md:gap-12 md:w-[calc(100%-6rem)] lg:py-12">
           {/* Boş 1. kolon — içerik ilk gridin bitişinden başlar (grid boşluğu atlanmaz: -ml ile gap kadar sola çekildi) */}
           <div className="col-span-1" aria-hidden />
           <div className="-ml-10 col-span-11 flex max-w-2xl flex-col md:col-span-5 md:-ml-12 md:pr-0">
@@ -77,7 +78,7 @@ export function HomeScreen() {
 
       {/* BRAND STRIP — siyah arka plan, beyaz büyük harf, eşit kolonlarda ortalanmış markalar */}
       <section
-        className="-mx-4 grid w-[calc(100%+2rem)] grid-cols-5 bg-black py-8 md:-mx-6 md:w-[calc(100%+3rem)] md:py-11"
+        className="-mx-10 grid w-[calc(100%+5rem)] grid-cols-5 bg-black py-8 md:-mx-12 md:w-[calc(100%+6rem)] md:py-11"
         aria-label="Featured brands"
       >
         <div
@@ -113,7 +114,7 @@ export function HomeScreen() {
       </section>
 
       {/* NEW ARRIVALS — başlık ortada; kartlar eşit genişlik, ilk grid bitişinden son grid başlangıcına */}
-      <section className="col-span-12 mt-12 flex flex-col gap-6 px-4 md:mt-16 md:px-6">
+      <section className="col-span-12 mt-12 flex flex-col gap-6 px-10 md:mt-16 md:px-12">
         <h2 className="text-center text-2xl font-bold uppercase tracking-wide text-foreground md:text-3xl">
           New Arrivals
         </h2>
@@ -135,12 +136,12 @@ export function HomeScreen() {
       </section>
 
       {/* Ayırıcı çizgi — View All ile Top Selling arası eşit boşluk (üst/alt my-8) */}
-      <div className="col-span-12 my-8 px-4 md:my-10 md:px-6" aria-hidden>
+      <div className="col-span-12 my-8 px-10 md:my-10 md:px-12" aria-hidden>
         <hr className="border-0 h-px w-full" style={{ backgroundColor: "#0000001A" }} />
       </div>
 
       {/* TOP SELLING — başlık ortada; kartlar eşit genişlik, ilk grid bitişinden son grid başlangıcına */}
-      <section className="col-span-12 flex flex-col gap-6 px-4 md:px-6">
+      <section className="col-span-12 flex flex-col gap-6 px-10 md:px-12">
         <h2 className="text-center text-2xl font-bold uppercase tracking-wide text-foreground md:text-3xl">
           Top Selling
         </h2>
@@ -162,6 +163,8 @@ export function HomeScreen() {
       </section>
 
       <BrowseByDressStyleSection />
+
+      <TestimonialsSection />
     </div>
   );
 }
