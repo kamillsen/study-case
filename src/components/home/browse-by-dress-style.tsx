@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 
 const cardBase =
-  "block min-h-[200px] overflow-hidden rounded-lg border border-border bg-white bg-center bg-no-repeat md:min-h-[260px]";
+  "relative block min-h-[200px] overflow-hidden rounded-lg border border-border bg-white bg-center bg-no-repeat md:min-h-[260px]";
 
 const STYLES = [
-  { image: "/img/casual.png" },
-  { image: "/img/formal.png" },
-  { image: "/img/party.png" },
-  { image: "/img/gym.png" },
+  { image: "/img/casual.png", label: "Casual" },
+  { image: "/img/formal.png", label: "Normal" },
+  { image: "/img/party.png", label: "Party" },
+  { image: "/img/gym.png", label: "Gym" },
 ] as const;
 
 /**
@@ -30,38 +30,23 @@ export function BrowseByDressStyleSection() {
         </h2>
         {/* Kartlar: soldan 2. gridin başına, sağdan 11. gridin sonuna (grid boşluklarını atla) */}
         <div className="grid grid-cols-12 gap-10 pl-10 pr-10 md:gap-12 md:pl-12 md:pr-12">
-          <div className="col-span-12 sm:col-span-5">
-            <div
-              className={cn(cardBase)}
-              style={{ backgroundImage: `url(${STYLES[0].image})`, backgroundSize: "30%" }}
-              role="img"
-              aria-label="Casual"
-            />
-          </div>
-          <div className="col-span-12 sm:col-span-7">
-            <div
-              className={cn(cardBase)}
-              style={{ backgroundImage: `url(${STYLES[1].image})`, backgroundSize: "30%" }}
-              role="img"
-              aria-label="Formal"
-            />
-          </div>
-          <div className="col-span-12 sm:col-span-7">
-            <div
-              className={cn(cardBase)}
-              style={{ backgroundImage: `url(${STYLES[2].image})`, backgroundSize: "30%" }}
-              role="img"
-              aria-label="Party"
-            />
-          </div>
-          <div className="col-span-12 sm:col-span-5">
-            <div
-              className={cn(cardBase)}
-              style={{ backgroundImage: `url(${STYLES[3].image})`, backgroundSize: "30%" }}
-              role="img"
-              aria-label="Gym"
-            />
-          </div>
+          {STYLES.map((style, index) => {
+            const colSpan = index === 0 || index === 3 ? "sm:col-span-5" : "sm:col-span-7";
+            return (
+              <div key={style.label} className={cn("col-span-12", colSpan)}>
+                <div
+                  className={cn(cardBase)}
+                  style={{ backgroundImage: `url(${style.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                  role="img"
+                  aria-label={style.label}
+                >
+                  <span className="absolute left-4 top-4 text-lg font-semibold text-foreground md:left-5 md:top-5 md:text-xl">
+                    {style.label}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
       <div className="col-span-1 hidden sm:block" aria-hidden />
