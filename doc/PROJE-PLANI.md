@@ -378,3 +378,6 @@ npm install -D openapi-react-query-codegen prettier
 **Codegen için:** Spec olarak projedeki `docs-data.json` (Fake Store API OpenAPI 3.1.0) kullanılacak. Codegen config ve çıktı klasörü (örn. `src/generated/`) proje yapısına göre ayarlanmalı.
 
 Bu planı takip ederek hem zamanında bitirebilirsin hem de Wibesoft teknik değerlendirme dokümanındaki tüm gereksinimleri karşılayan bir proje teslim edebilirsin. OpenAPI React Query Codegen kurulumu için ilgili repo dokümantasyonuna ve örnek config'e bak.
+
+
+http://localhost:3000/?grid=1
