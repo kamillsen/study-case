@@ -2,6 +2,8 @@
 
 Bu doküman, `doc/PROJE-PLANI.md` ile uyumlu **uygulama adımlarını** içerir. Planladıkça buraya yeni adımlar eklenir.
 
+**Branch:** `setup/temel-bagimliliklar-ve-yapi` — bu adımlar bu branch üzerinde yapılacak.
+
 ---
 
 ## Mevcut Proje Durumu
