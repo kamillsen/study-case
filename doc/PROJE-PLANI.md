@@ -68,16 +68,22 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
    │   ├── layout.tsx         # Root layout
    │   └── page.tsx           # Home page
    ├── components/            # Reusable components
-   │   ├── ui/               # Base UI components
-   │   ├── products/         # Product-related components
-   │   └── cart/             # Cart components
-   ├── hooks/                # Custom hooks
-   ├── lib/                  # Utilities, configs
-   ├── generated/            # OpenAPI Codegen çıktısı (API client, query hooks)
-   ├── stores/               # Zustand stores
-   ├── types/                # TypeScript definitions
-   └── utils/                # Helper functions
+   │   ├── shadcn/            # shadcn CLI çıktısı — dokunulmaz (kütüphane katmanı)
+   │   ├── ui/                # Bizim katman: Figma’ya göre özelleştirilmiş bileşenler (shadcn’i wrap eder)
+   │   ├── products/          # Product-related components
+   │   └── cart/              # Cart components
+   ├── hooks/                 # Custom hooks
+   ├── lib/                   # Utilities, configs
+   ├── generated/             # OpenAPI Codegen çıktısı (API client, query hooks)
+   ├── stores/                # Zustand stores
+   ├── types/                 # TypeScript definitions
+   └── utils/                 # Helper functions
    ```
+
+   **UI bileşenleri (shadcn) organizasyonu (Seçenek B):**
+   - **`components/shadcn/`** — shadcn CLI bileşenleri buraya eklenir. Bu dosyalara el ile değişiklik yapılmaz; güncelleme/ekleme sadece CLI ile (`npx shadcn@latest add ...`). Init sırasında "Where should we add the components?" → `@/components/shadcn` seçilir.
+   - **`components/ui/`** — Uygulama katmanı: shadcn bileşenlerini import edip Figma’ya göre stil/variant veren wrapper’lar. Tüm özelleştirmeler burada yapılır; `products/` ve `cart/` buradaki bileşenleri kullanır.
+   - Örnek: `ui/button.tsx` → `@/components/shadcn/button` import eder, className/variant’ları Figma paletine göre tanımlar ve export eder.
 
 3. **Environment variables konfigürasyonu**
    - `.env.local` dosyası oluştur
@@ -100,6 +106,7 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
 3. **Tasarım sistemi başlangıcı**
    - Tailwind config güncelleme (Figma'daki renkler)
    - Base styles ve typography
+   - shadcn/ui: `npx shadcn@latest init` → bileşenler `@/components/shadcn`; uygulama bileşenleri `components/ui/` içinde shadcn’i wrap ederek Figma’ya göre kullanılır.
 
 ---
 
