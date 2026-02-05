@@ -18,6 +18,18 @@
 - https://fakestoreapi.com/docs
 - https://fakestoreapi.com/docs-data (OpenAPI 3.1.0 spec — codegen için kullanılacak)
 
+### Ürün tipi (Product)
+`GET /products` ve `GET /products/{id}` cevaplarında her ürün bu alanlarla geliyor:
+
+| Alan | Tip | Açıklama |
+|------|-----|----------|
+| id | number | Ürün ID |
+| title | string | Ürün adı |
+| price | number | Fiyat (float) |
+| description | string | Açıklama |
+| category | string | Kategori |
+| image | string | Görsel URL'i |
+
 ### Tasarım
 - Figma: [E-commerce Website Template](https://www.figma.com/design/Zr5KLBmfZQeV0goyFG9gmy/E-commerce-Website-Template–Freebie—Community-?node-id=0-1&t=TPzT7NNxwczvmZOT-1)
 - Dikkat: renk paleti, grid, boşluklar (margins/paddings), tipografi, buton stilleri. Responsive, Tailwind CSS.
