@@ -13,7 +13,7 @@ type QueryProviderProps = {
  */
 export function QueryProvider({ children }: QueryProviderProps) {
   const [queryClient] = React.useState(
-    () =>
+    () =>  
       new QueryClient({
         defaultOptions: {
           queries: {

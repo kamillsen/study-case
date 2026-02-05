@@ -5,9 +5,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Playfair_Display, Bebas_Neue, Oswald } from "next/font/google";
-import { Header } from "@/components/ui/header";
-import { Footer } from "@/components/ui/footer";
-import { GridOverlay } from "@/components/ui/grid-overlay";
+import { Header, Footer, GridOverlay } from "@/components/shared";
 import { QueryProvider } from "@/app/providers/query-provider";
 import "./globals.css";
 

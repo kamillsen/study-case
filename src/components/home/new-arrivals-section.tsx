@@ -26,10 +26,6 @@ function NewArrivalsSkeletonRow() {
   );
 }
 
-/**
- * Ana sayfadaki \"New Arrivals\" bölümü.
- * FakeStore API'den ilk 4 ürünü çeker ve kartlarda gösterir.
- */
 export function NewArrivalsSection() {
   const { data, isLoading, isError, error, refetch } = useGetAllProductsQuery({
     staleTime: 1000 * 60,
@@ -86,4 +82,3 @@ export function NewArrivalsSection() {
     </section>
   );
 }
-

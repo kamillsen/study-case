@@ -10,11 +10,13 @@ Bu doküman, `doc/PROJE-PLANI.md` ile uyumlu **uygulama adımlarını** içerir.
 
 | Var | Yok |
 |-----|-----|
-| Next.js 16, React 19, TypeScript, Tailwind 4, ESLint | TanStack Query, Zustand, OpenAPI Codegen, shadcn |
-| `src/app/` (layout, page, globals.css) | `components/`, `hooks/`, `lib/`, `generated/`, `stores/`, `types/`, `utils/` |
-| Kök dizinde `docs-data.json` (OpenAPI spec) | `.env.local`, codegen config |
+| Next.js 16, React 19, TypeScript, Tailwind 4, ESLint | — |
+| TanStack Query, Zustand, OpenAPI Codegen, shadcn | — |
+| **Sayfa bazlı bileşenler:** `src/components/home/`, `products/`, `cart/`, `profile/` | — |
+| **Ortak bileşenler:** `src/components/shared/` (Header, Footer, GridOverlay) | — |
+| `src/components/ui/` (shadcn), `src/app/(main)/` (route group), `src/generated/`, `src/stores/` | — |
 
-Temel Next.js projesi hazır; plandaki stack ve klasör yapısı henüz eklenmedi.
+Ana sayfa → `app/(main)/page.tsx` → `@/components/home`. Layout → `@/components/shared`. Ürün → `@/components/products`. Sepet → `@/components/cart`. Profil → `@/components/profile`.
 
 ---
 
@@ -27,7 +29,8 @@ Temel Next.js projesi hazır; plandaki stack ve klasör yapısı henüz eklenmed
    - Dev: OpenAPI React Query Codegen (paket adı repoya göre), Prettier
 
 2. **Klasör yapısı**
-   - `src/components/` altında: `shadcn/`, `ui/`, `products/`, `cart/`
+   - `src/app/(main)/` — Route group (URL'de görünmez); içinde `page.tsx`, `products/`, `cart/`, `profile/`
+   - `src/components/` altında: `shared/` (Header, Footer, GridOverlay), `home/`, `products/`, `cart/`, `profile/` (sayfa bazlı), `shadcn/`, `ui/`
    - `src/hooks/`, `src/lib/`, `src/generated/`, `src/stores/`, `src/types/`, `src/utils/`
 
 3. **Environment**
@@ -58,7 +61,7 @@ Temel Next.js projesi hazır; plandaki stack ve klasör yapısı henüz eklenmed
 |------|------|--------|
 | 1 | Runtime dependency: TanStack Query, Zustand | `package.json` güncel |
 | 2 | Dev dependency: Codegen, Prettier | Kurulum tamam |
-| 3 | Klasörleri oluştur (components/shadcn, ui, products, cart; hooks, lib, generated, stores, types, utils) | Plandaki yapı |
+| 3 | Klasörleri oluştur (app/(main), components/shared, home, products, cart, profile, shadcn, ui; hooks, lib, generated, stores, types, utils) | Plandaki yapı |
 | 4 | `.env.local` + `NEXT_PUBLIC_API_BASE_URL` | Ortam değişkeni hazır |
 | 5 | Codegen config + `docs-data.json` → `src/generated/` | API client + query hook’ları |
 | 6 | `npx shadcn@latest init` → `@/components/shadcn` | shadcn hazır |

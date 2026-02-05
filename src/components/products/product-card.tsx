@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Ürün kartı — içerik sonra eklenecek, şimdilik boş kart kabı.
- * 12 grid’de col-span-3 (4 kart yan yana) veya col-span-6 (2 kart) kullanılabilir.
- */
 export function ProductCard({
   className,
   children,

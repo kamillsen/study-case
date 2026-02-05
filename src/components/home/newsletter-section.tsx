@@ -2,10 +2,6 @@ import { Mail } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-/**
- * Newsletter / CTA bölümü — siyah, yuvarlak köşeli bar.
- * Tasarım: solda büyük başlık, sağda email input + Subscribe butonu.
- */
 export function NewsletterSection() {
   return (
     <section
@@ -14,10 +10,8 @@ export function NewsletterSection() {
     >
       <div className="grid grid-cols-12 gap-10 md:gap-12">
         <div className="col-span-1 hidden sm:block" aria-hidden />
-        {/* Siyah bar: kartlar gibi — sol ilk grid bitişi, sağ son grid başlangıcı */}
         <div className="col-span-12 sm:col-span-10 sm:-ml-10 sm:-mr-10 md:-ml-12 md:-mr-12">
           <div className="flex flex-col gap-8 rounded-3xl bg-black px-8 py-10 text-white md:flex-row md:items-center md:justify-between md:px-14 md:py-12">
-            {/* Sol: Başlık */}
             <div className="max-w-xl">
               <h2
                 id="newsletter-heading"
@@ -29,7 +23,6 @@ export function NewsletterSection() {
               </h2>
             </div>
 
-            {/* Sağ: Email input + Subscribe butonu */}
             <form className="flex w-full max-w-md flex-col gap-3">
               <div className="relative">
                 <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
@@ -55,4 +48,3 @@ export function NewsletterSection() {
     </section>
   );
 }
-

@@ -1,22 +1,19 @@
-/**
- * Ürün detay sayfası — /products/[id]
- * API'den tek ürün çekmek için useGetProductByIdQuery kullanılır.
- */
 'use client';
 
-import { useParams } from 'next/navigation';
 import { useGetProductByIdQuery } from '@/generated/queries';
 import { ProductCard } from '@/components/products/product-card';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/stores/cart-store';
 
-export default function ProductPage() {
-  const params = useParams<{ id: string }>();
-  const id = Number(params.id);
-  const { data, isLoading, isError, error } = useGetProductByIdQuery(id);
+type ProductDetailViewProps = {
+  productId: number;
+};
+
+export function ProductDetailView({ productId }: ProductDetailViewProps) {
+  const { data, isLoading, isError, error } = useGetProductByIdQuery(productId);
   const addToCart = useCartStore((s) => s.addToCart);
 
-  if (Number.isNaN(id)) {
+  if (Number.isNaN(productId)) {
     return (
       <div className="col-span-12">
         <p className="text-destructive">Geçersiz ürün ID.</p>
@@ -61,8 +58,8 @@ export default function ProductPage() {
       <div className="col-span-12 md:col-span-5">
         <ProductCard className="min-h-[380px]">
           <div className="flex h-80 w-full items-center justify-center overflow-hidden rounded-lg bg-muted">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             {product.image && (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={product.image as string}
                 alt={product.title}
@@ -94,4 +91,3 @@ export default function ProductPage() {
     </div>
   );
 }
-

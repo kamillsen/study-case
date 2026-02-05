@@ -3,10 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
-/**
- * URL'de ?grid=1 varsa 12 grid çizgilerini ekranda gösterir.
- * Layout ile aynı padding/gap kullanır: px-10 md:px-12 (kenar = gap), gap-10 md:gap-12.
- */
 function GridOverlayInner() {
   const searchParams = useSearchParams();
   const show = searchParams.get("grid") === "1";

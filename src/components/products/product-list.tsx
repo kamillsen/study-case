@@ -23,10 +23,6 @@ type ProductListProps = {
   title?: string;
 };
 
-/**
- * API'den gelen ürünleri listeleyen grid bileşeni.
- * useGetAllProductsQuery + loading / error / success state'leri.
- */
 export function ProductList({ title }: ProductListProps) {
   const { data, isLoading, isError, error, refetch, isFetching } =
     useGetAllProductsQuery();
@@ -73,4 +69,3 @@ export function ProductList({ title }: ProductListProps) {
     </section>
   );
 }
-

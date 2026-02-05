@@ -76,14 +76,17 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
    ```
    src/
    ├── app/                    # Next.js App Router
-   │   ├── (routes)/          # Route grupları
    │   ├── layout.tsx         # Root layout
-   │   └── page.tsx           # Home page
-   ├── components/            # Reusable components
-   │   ├── shadcn/            # shadcn CLI çıktısı — dokunulmaz (kütüphane katmanı)
-   │   ├── ui/                # Bizim katman: Figma’ya göre özelleştirilmiş bileşenler (shadcn’i wrap eder)
-   │   ├── products/          # Product-related components
-   │   └── cart/              # Cart components
+   │   ├── (main)/            # Route group (URL'de görünmez): page, products, cart, profile
+   │   └── providers/
+   ├── components/            # Bileşenler (sayfa bazlı + ortak)
+   │   ├── shared/            # Header, Footer, GridOverlay (ortak)
+   │   ├── home/              # Ana sayfa bileşenleri
+   │   ├── products/          # Ürün listesi, kart, detay
+   │   ├── cart/              # Sepet bileşenleri
+   │   ├── profile/           # Profil bileşenleri
+   │   ├── shadcn/            # shadcn CLI çıktısı — dokunulmaz
+   │   └── ui/                # Figma’ya göre özelleştirilmiş bileşenler (shadcn’i wrap eder)
    ├── hooks/                 # Custom hooks
    ├── lib/                   # Utilities, configs
    ├── generated/             # OpenAPI Codegen çıktısı (API client, query hooks)
@@ -94,7 +97,7 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
 
    **UI bileşenleri (shadcn) organizasyonu (Seçenek B):**
    - **`components/shadcn/`** — shadcn CLI bileşenleri buraya eklenir. Bu dosyalara el ile değişiklik yapılmaz; güncelleme/ekleme sadece CLI ile (`npx shadcn@latest add ...`). Init sırasında "Where should we add the components?" → `@/components/shadcn` seçilir.
-   - **`components/ui/`** — Uygulama katmanı: shadcn bileşenlerini import edip Figma’ya göre stil/variant veren wrapper’lar. Tüm özelleştirmeler burada yapılır; `products/` ve `cart/` buradaki bileşenleri kullanır.
+   - **`components/ui/`** — Uygulama katmanı: shadcn bileşenlerini import edip Figma’ya göre stil/variant veren wrapper’lar. Tüm özelleştirmeler burada yapılır; `components/products/` ve `components/cart/` buradaki bileşenleri kullanır.
    - Örnek: `ui/button.tsx` → `@/components/shadcn/button` import eder, className/variant’ları Figma paletine göre tanımlar ve export eder.
 
 3. **Environment variables konfigürasyonu**

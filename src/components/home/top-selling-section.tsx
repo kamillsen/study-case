@@ -29,10 +29,6 @@ function TopSellingSkeletonRow() {
   );
 }
 
-/**
- * Ana sayfadaki "Top Selling" bölümü.
- * FakeStore API'den gelen ürünlerden rastgele 4 tanesini gösterir.
- */
 export function TopSellingSection() {
   const { data, isLoading, isError, error, refetch } = useGetAllProductsQuery({
     staleTime: 1000 * 60,
@@ -94,4 +90,3 @@ export function TopSellingSection() {
     </section>
   );
 }
-

@@ -9,18 +9,9 @@ type ProductGridCardProps = {
   product: Product;
 };
 
-/**
- * Liste/grid görünümünde kullanılan ürün kartı.
- * home.txt:98-117 taslağına göre:
- * - Ürün görseli
- * - Başlık
- * - Rating (yıldızlar + X.X/5)
- * - Fiyat / eski fiyat / indirim yüzdesi
- */
 export function ProductGridCard({ product }: ProductGridCardProps) {
-  const rawRating = (product as any)?.rating?.rate as number | undefined;
+  const rawRating = (product as { rating?: { rate?: number } })?.rating?.rate as number | undefined;
   const rate = typeof rawRating === 'number' ? rawRating : 0;
-  // Rating'in ilk rakamı kadar dolu yıldız (max 5)
   const firstDigit = Number.isFinite(rate)
     ? Math.min(5, Math.max(0, parseInt(String(Math.floor(rate))[0] ?? '0', 10)))
     : 0;
@@ -40,10 +31,9 @@ export function ProductGridCard({ product }: ProductGridCardProps) {
         href={`/products/${product.id}`}
         className="flex flex-1 flex-col p-4"
       >
-        {/* PRODUCT IMAGE */}
         <div className="mb-4 flex h-72 w-full items-center justify-center overflow-hidden rounded-md bg-muted md:h-80">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           {product.image && (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={product.image as string}
               alt={product.title}
@@ -52,12 +42,10 @@ export function ProductGridCard({ product }: ProductGridCardProps) {
           )}
         </div>
 
-        {/* PRODUCT TITLE */}
         <h3 className="mb-1 line-clamp-2 text-lg font-semibold text-foreground">
           {product.title}
         </h3>
 
-        {/* RATING */}
         <div className="mb-2 flex items-center justify-between text-base">
           <div className="flex items-center gap-1">
             {Array.from({ length: totalStars }).map((_, i) => (
@@ -78,7 +66,6 @@ export function ProductGridCard({ product }: ProductGridCardProps) {
           </div>
         </div>
 
-        {/* PRICE SECTION */}
         <div className="mt-auto flex items-baseline gap-2 text-lg">
           <span className="font-semibold text-foreground">
             ${price.toFixed(2)}
@@ -96,4 +83,3 @@ export function ProductGridCard({ product }: ProductGridCardProps) {
     </ProductCard>
   );
 }
-

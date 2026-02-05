@@ -10,9 +10,6 @@ const STYLES = [
   { image: "/img/gym.png", label: "Gym" },
 ] as const;
 
-/**
- * Browse by Dress Style — koyu alan: sol ilk grid bitişi, sağ son grid başlangıcı. Kartlar: col 2–11.
- */
 export function BrowseByDressStyleSection() {
   return (
     <div className="grid grid-cols-12 gap-10 px-10 pt-12 md:gap-12 md:px-12 md:pt-16">
@@ -28,7 +25,6 @@ export function BrowseByDressStyleSection() {
         >
           Browse by Dress Style
         </h2>
-        {/* Kartlar: soldan 2. gridin başına, sağdan 11. gridin sonuna (grid boşluklarını atla) */}
         <div className="grid grid-cols-12 gap-10 pl-10 pr-10 md:gap-12 md:pl-12 md:pr-12">
           {STYLES.map((style, index) => {
             const colSpan = index === 0 || index === 3 ? "sm:col-span-5" : "sm:col-span-7";

@@ -1,27 +1,20 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/products/product-card";
-import { BrowseByDressStyleSection } from "@/components/home/browse-by-dress-style";
-import { TestimonialsSection } from "@/components/home/testimonials-section";
-import { NewsletterSection } from "@/components/home/newsletter-section";
-import { NewArrivalsSection } from "@/components/home/new-arrivals-section";
-import { TopSellingSection } from "@/components/home/top-selling-section";
+import { ProductCard } from "@/components/products";
+import { BrowseByDressStyleSection } from "./browse-by-dress-style";
+import { TestimonialsSection } from "./testimonials-section";
+import { NewsletterSection } from "./newsletter-section";
+import { NewArrivalsSection } from "./new-arrivals-section";
+import { TopSellingSection } from "./top-selling-section";
 
-/**
- * Sitenin ana ekranı — ana sayfada render edilen bileşen.
- * 12 grid: Hero’nun tamamının arka planı görsel; üzerinde sol içerik + sağ boş alan.
- */
 export function HomeScreen() {
   return (
     <div className="col-span-12 -mx-10 -mt-6 flex flex-col md:-mx-12 md:-mt-6">
-      {/* HERO SECTION — Header ve sağ/sol kenarlara yaslı, köşeler düz */}
       <section
         className="relative min-h-[85vh] w-full overflow-hidden bg-cover bg-right bg-no-repeat"
         style={{ backgroundImage: "url(/img/image.png)" }}
       >
-        {/* Layout ile aynı hiza: kenar boşluğu = grid gap (2.5rem / 3rem) */}
         <div className="relative ml-10 grid min-h-[85vh] w-[calc(100%-5rem)] grid-cols-12 items-center gap-10 py-8 md:ml-12 md:gap-12 md:w-[calc(100%-6rem)] lg:py-12">
-          {/* Boş 1. kolon — içerik ilk gridin bitişinden başlar (grid boşluğu atlanmaz: -ml ile gap kadar sola çekildi) */}
           <div className="col-span-1" aria-hidden />
           <div className="-ml-10 col-span-11 flex max-w-2xl flex-col md:col-span-5 md:-ml-12 md:pr-0">
             <h1 className="mb-4 text-3xl font-bold uppercase leading-tight tracking-wide text-foreground md:text-4xl lg:text-5xl">
@@ -49,7 +42,6 @@ export function HomeScreen() {
               <Link href="/products">Shop Now</Link>
             </Button>
 
-            {/* Stats — görsel üstünde, aralarında dikey soluk çizgi */}
             <div className="flex flex-wrap items-center gap-10 text-foreground md:gap-12">
               <div>
                 <p className="text-2xl font-bold">200+</p>
@@ -74,12 +66,10 @@ export function HomeScreen() {
             </div>
           </div>
 
-          {/* Sağ 6 kolon — arka plan görseli burada da görünür */}
           <div className="col-span-12 hidden md:col-span-6 md:block" aria-hidden />
         </div>
       </section>
 
-      {/* BRAND STRIP — siyah arka plan, beyaz büyük harf, eşit kolonlarda ortalanmış markalar */}
       <section
         className="-mx-10 grid w-[calc(100%+5rem)] grid-cols-5 bg-black py-8 md:-mx-12 md:w-[calc(100%+6rem)] md:py-11"
         aria-label="Featured brands"
@@ -118,7 +108,6 @@ export function HomeScreen() {
 
       <NewArrivalsSection />
 
-      {/* Ayırıcı çizgi — View All ile Top Selling arası eşit boşluk (üst/alt my-8) */}
       <div className="col-span-12 my-8 px-10 md:my-10 md:px-12" aria-hidden>
         <hr
           className="border-0 h-px w-full"

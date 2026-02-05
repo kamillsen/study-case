@@ -3,58 +3,20 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Star } from "lucide-react";
 
-/** Değiştirmek için: yeni yorum ekleyip çıkarabilirsiniz. */
 const REVIEWS = [
-  {
-    id: "1",
-    author: "Jane D.",
-    text: "Amazing quality and fast shipping. Will definitely order again!",
-    rating: 5,
-  },
-  {
-    id: "2",
-    author: "John S.",
-    text: "Great selection and the clothes fit perfectly. Very happy with my purchase.",
-    rating: 5,
-  },
-  {
-    id: "3",
-    author: "Maria L.",
-    text: "Love the style and comfort. The customer service was excellent.",
-    rating: 5,
-  },
+  { id: "1", author: "Jane D.", text: "Amazing quality and fast shipping. Will definitely order again!", rating: 5 },
+  { id: "2", author: "John S.", text: "Great selection and the clothes fit perfectly. Very happy with my purchase.", rating: 5 },
+  { id: "3", author: "Maria L.", text: "Love the style and comfort. The customer service was excellent.", rating: 5 },
 ] as const;
 
 const EXTRA_REVIEWS = [
-  {
-    id: "4",
-    author: "Alex P.",
-    text: "Great quality for the price. Shipping was faster than expected.",
-    rating: 4,
-  },
-  {
-    id: "5",
-    author: "Sophie K.",
-    text: "The fit is perfect and the fabric feels premium. Highly recommend.",
-    rating: 5,
-  },
-  {
-    id: "6",
-    author: "Daniel R.",
-    text: "Nice styles and easy checkout. I will shop here again.",
-    rating: 4,
-  },
-  {
-    id: "7",
-    author: "Emily W.",
-    text: "Customer support helped me quickly with a size exchange.",
-    rating: 5,
-  },
+  { id: "4", author: "Alex P.", text: "Great quality for the price. Shipping was faster than expected.", rating: 4 },
+  { id: "5", author: "Sophie K.", text: "The fit is perfect and the fabric feels premium. Highly recommend.", rating: 5 },
+  { id: "6", author: "Daniel R.", text: "Nice styles and easy checkout. I will shop here again.", rating: 4 },
+  { id: "7", author: "Emily W.", text: "Customer support helped me quickly with a size exchange.", rating: 5 },
 ] as const;
 
 const ALL_REVIEWS = [...REVIEWS, ...EXTRA_REVIEWS];
-
-/** Başlık metni — kolayca değiştirilebilir. */
 const SECTION_HEADING = "Happy Customers / Testimonials";
 
 function ReviewCard({
@@ -68,7 +30,6 @@ function ReviewCard({
 }) {
   return (
     <article className="flex min-h-[160px] flex-col rounded-lg border border-border bg-card p-5 shadow-sm md:min-h-[180px] md:p-6">
-      {/* Yıldızlar — sarı, kartın sol üstü */}
       <div className="mb-3 flex gap-0.5" aria-label={`${rating} yıldız`}>
         {Array.from({ length: 5 }, (_, i) => (
           <Star
@@ -78,7 +39,6 @@ function ReviewCard({
           />
         ))}
       </div>
-      {/* Kullanıcı adı — yanında yeşil daire içinde beyaz tik */}
       <div className="mb-2 flex items-center gap-2">
         <span className="font-medium text-foreground">{author}</span>
         <span
@@ -88,7 +48,6 @@ function ReviewCard({
           <Check className="size-3 stroke-[2.5]" aria-hidden />
         </span>
       </div>
-      {/* İçerik — kullanıcı adının altında */}
       <p className="flex-1 text-sm text-muted-foreground md:text-base">
         &ldquo;{text}&rdquo;
       </p>
@@ -96,15 +55,9 @@ function ReviewCard({
   );
 }
 
-/**
- * Happy Customers / Testimonials — 3 review kartı ve slider okları.
- * İçerik REVIEWS ve SECTION_HEADING ile kolayca değiştirilebilir.
- * Slider okları ileride carousel için kullanılabilir.
- */
 export function TestimonialsSection() {
   const VISIBLE_COUNT = 3;
   const [startIndex, setStartIndex] = useState(0);
-
   const total = ALL_REVIEWS.length;
 
   const getReviewAt = (offset: number) => {
@@ -128,7 +81,6 @@ export function TestimonialsSection() {
       className="col-span-12 mt-12 flex flex-col gap-8 px-10 md:mt-16 md:px-12"
       aria-labelledby="testimonials-heading"
     >
-      {/* Başlık ve ileri/geri butonları — altındaki kart gridinin solu ile tam aynı hizadan başlar */}
       <div className="grid grid-cols-12 gap-10 md:gap-12">
         <div className="col-span-1 hidden sm:block" aria-hidden />
         <div className="col-span-12 flex flex-wrap items-center justify-between gap-4 sm:col-span-10 sm:-ml-10 sm:-mr-10 md:-ml-12 md:-mr-12">
@@ -159,7 +111,6 @@ export function TestimonialsSection() {
         </div>
       </div>
 
-      {/* 3 kart: New Arrivals ile aynı 12 grid — ilk kart ilk grid bitişi, son kart son grid başlangıcı */}
       <div className="grid grid-cols-12 gap-10 md:gap-12">
         <div className="col-span-1 hidden sm:block" aria-hidden />
         <div className="col-span-12 grid grid-cols-1 gap-6 sm:col-span-10 sm:-ml-10 sm:-mr-10 sm:grid-cols-3 md:gap-8 md:-ml-12 md:-mr-12">
