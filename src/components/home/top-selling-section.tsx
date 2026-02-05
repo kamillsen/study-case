@@ -5,13 +5,16 @@ import { Button } from '@/components/ui/button';
 import { ProductGridCard } from '@/components/products/product-grid-card';
 import { useGetAllProductsQuery, type Product } from '@/generated/queries';
 
-function NewArrivalsSkeletonRow() {
+function TopSellingSkeletonRow() {
   return (
     <div className="grid grid-cols-12 gap-10 md:gap-12">
       <div className="col-span-1 hidden sm:block" aria-hidden />
       <div className="col-span-12 grid grid-cols-1 gap-10 sm:col-span-10 sm:-ml-10 sm:-mr-10 sm:grid-cols-4 md:gap-12 md:-ml-12 md:-mr-12">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="flex min-h-[360px] flex-col overflow-hidden rounded-lg border border-border bg-muted/40 text-card-foreground shadow-sm animate-pulse">
+          <div
+            key={i}
+            className="flex min-h-[360px] flex-col overflow-hidden rounded-lg border border-border bg-muted/40 text-card-foreground shadow-sm animate-pulse"
+          >
             <div className="h-64 w-full bg-muted md:h-72" />
             <div className="flex flex-1 flex-col gap-2 p-4">
               <div className="h-4 w-3/4 rounded bg-muted" />
@@ -27,27 +30,32 @@ function NewArrivalsSkeletonRow() {
 }
 
 /**
- * Ana sayfadaki \"New Arrivals\" bölümü.
- * FakeStore API'den ilk 4 ürünü çeker ve kartlarda gösterir.
+ * Ana sayfadaki "Top Selling" bölümü.
+ * FakeStore API'den gelen ürünlerden rastgele 4 tanesini gösterir.
  */
-export function NewArrivalsSection() {
+export function TopSellingSection() {
   const { data, isLoading, isError, error, refetch } = useGetAllProductsQuery({
     staleTime: 1000 * 60,
   });
 
-  const products = (data ?? []).slice(0, 4);
+  const allProducts = (data ?? []) as Product[];
+  const shuffled =
+    allProducts.length <= 4
+      ? allProducts
+      : [...allProducts].sort(() => Math.random() - 0.5);
+  const products = shuffled.slice(0, 4);
 
   return (
-    <section className="col-span-12 mt-12 flex flex-col gap-6 px-10 md:mt-16 md:px-12">
+    <section className="col-span-12 flex flex-col gap-6 px-10 md:px-12">
       <h2 className="text-center text-2xl font-bold uppercase tracking-wide text-foreground md:text-3xl">
-        New Arrivals
+        Top Selling
       </h2>
 
-      {isLoading && <NewArrivalsSkeletonRow />}
+      {isLoading && <TopSellingSkeletonRow />}
 
       {!isLoading && isError && (
         <div className="flex flex-col items-center gap-3 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-6 text-center text-sm text-destructive md:px-6">
-          <p>Yeni gelen ürünler yüklenirken bir hata oluştu.</p>
+          <p>Top selling ürünler yüklenirken bir hata oluştu.</p>
           <p className="text-xs text-destructive/80">
             {error?.message ?? 'Bilinmeyen hata'}
           </p>

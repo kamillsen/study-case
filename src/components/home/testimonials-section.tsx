@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Star,
-} from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight, Check, Star } from "lucide-react";
 
 /** Değiştirmek için: yeni yorum ekleyip çıkarabilirsiniz. */
 const REVIEWS = [
@@ -28,6 +24,35 @@ const REVIEWS = [
     rating: 5,
   },
 ] as const;
+
+const EXTRA_REVIEWS = [
+  {
+    id: "4",
+    author: "Alex P.",
+    text: "Great quality for the price. Shipping was faster than expected.",
+    rating: 4,
+  },
+  {
+    id: "5",
+    author: "Sophie K.",
+    text: "The fit is perfect and the fabric feels premium. Highly recommend.",
+    rating: 5,
+  },
+  {
+    id: "6",
+    author: "Daniel R.",
+    text: "Nice styles and easy checkout. I will shop here again.",
+    rating: 4,
+  },
+  {
+    id: "7",
+    author: "Emily W.",
+    text: "Customer support helped me quickly with a size exchange.",
+    rating: 5,
+  },
+] as const;
+
+const ALL_REVIEWS = [...REVIEWS, ...EXTRA_REVIEWS];
 
 /** Başlık metni — kolayca değiştirilebilir. */
 const SECTION_HEADING = "Happy Customers / Testimonials";
@@ -77,11 +102,25 @@ function ReviewCard({
  * Slider okları ileride carousel için kullanılabilir.
  */
 export function TestimonialsSection() {
+  const VISIBLE_COUNT = 3;
+  const [startIndex, setStartIndex] = useState(0);
+
+  const total = ALL_REVIEWS.length;
+
+  const getReviewAt = (offset: number) => {
+    const index = (startIndex + offset + total) % total;
+    return ALL_REVIEWS[index];
+  };
+
+  const centerReviews = Array.from({ length: VISIBLE_COUNT }, (_, i) =>
+    getReviewAt(i)
+  );
+
   const goPrev = () => {
-    /* İleride: önceki slide / kart seti */
+    setStartIndex((prev) => (prev - 1 + total) % total);
   };
   const goNext = () => {
-    /* İleride: sonraki slide / kart seti */
+    setStartIndex((prev) => (prev + 1) % total);
   };
 
   return (
@@ -120,10 +159,11 @@ export function TestimonialsSection() {
         </div>
       </div>
 
+      {/* 3 kart: New Arrivals ile aynı 12 grid — ilk kart ilk grid bitişi, son kart son grid başlangıcı */}
       <div className="grid grid-cols-12 gap-10 md:gap-12">
         <div className="col-span-1 hidden sm:block" aria-hidden />
         <div className="col-span-12 grid grid-cols-1 gap-6 sm:col-span-10 sm:-ml-10 sm:-mr-10 sm:grid-cols-3 md:gap-8 md:-ml-12 md:-mr-12">
-          {REVIEWS.map((review) => (
+          {centerReviews.map((review) => (
             <ReviewCard
               key={review.id}
               author={review.author}

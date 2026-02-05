@@ -5,7 +5,7 @@
 // shadcn: DropdownMenu, Input, Button, Sheet (mobil).
 
 import Link from "next/link";
-import { Menu, Search, ShoppingBag, User, ChevronDown } from "lucide-react";
+import { Menu, Search, ShoppingCart, User, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -34,7 +34,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       {/* 12 grid: kartlarla aynı hiza — SHOP.CO ilk gridin bitişi, sepet/profil son gridin başlangıcı (gap üzerine -ml ile çekilmiş) */}
-      <div className="grid h-14 grid-cols-12 items-center gap-10 px-10 md:gap-12 md:px-12">
+      <div className="grid h-16 grid-cols-12 items-center gap-10 px-10 md:gap-12 md:px-12">
         {/* Tüm içerik: sm+: kolon 2–11, sol/sağda -ml/-mr ile gap kadar taşarak
             SHOP.CO'yu ilk gridin bitişine, sepet/profili son gridin başlangıcına yaslar */}
         <div className="col-span-12 flex items-center justify-between gap-3 sm:col-span-10 sm:col-start-2 sm:-ml-10 sm:-mr-10 md:-ml-12 md:-mr-12 md:gap-6">
@@ -81,7 +81,7 @@ export function Header() {
               <Input
                 type="search"
                 placeholder="for Products"
-                className="h-9 pl-9"
+                className="h-10 rounded-full bg-[#F0F0F0] pl-9"
                 aria-label="Ürün ara"
               />
             </div>
@@ -92,7 +92,7 @@ export function Header() {
             {/* Sepet ikonu */}
             <Button variant="ghost" size="icon" aria-label="Sepet" asChild>
               <Link href="/cart">
-                <ShoppingBag className="size-5" />
+                <ShoppingCart className="size-5" />
               </Link>
             </Button>
             {/* Profil ikonu */}
@@ -139,7 +139,10 @@ export function Header() {
                   <Separator />
                   <div className="relative">
                     <Search className="text-muted-foreground absolute left-3 top-1/2 size-4 -translate-y-1/2" />
-                    <Input placeholder="for Products" className="pl-9" />
+                    <Input
+                      placeholder="for Products"
+                      className="rounded-full bg-[#F0F0F0] pl-9"
+                    />
                   </div>
                   <Button variant="ghost" className="justify-start" asChild>
                     <Link href="/cart">Sepet</Link>
