@@ -53,7 +53,7 @@ export default function RootLayout({
         <Header />
         {/* Sayfaya göre değişen içerik — 12 grid: children kendi col-span'lerini kullanır */}
         <main className="flex-1">
-          <div className="grid grid-cols-12 gap-4 px-4 py-6 md:gap-6 md:px-6">
+          <div className="grid grid-cols-12 gap-10 px-4 py-6 md:gap-12 md:px-6">
             {children}
           </div>
         </main>

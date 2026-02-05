@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="mt-auto w-full border-t bg-background">
       <Separator />
       {/* 12 grid: telif(6) | nav(6) — ayarlama için col-span değiştirilebilir */}
-      <div className="grid grid-cols-12 gap-4 px-4 py-6 text-sm text-muted-foreground md:px-6">
+      <div className="grid grid-cols-12 gap-10 px-4 py-6 text-sm text-muted-foreground md:gap-12 md:px-6">
         <p className="col-span-12 md:col-span-6">
           © {new Date().getFullYear()} Mağaza. Tüm hakları saklıdır.
         </p>

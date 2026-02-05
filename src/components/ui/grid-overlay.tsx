@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 /**
  * URL'de ?grid=1 varsa 12 grid çizgilerini ekranda gösterir.
- * Layout ile aynı padding/gap kullanır: px-4 md:px-6, gap-4 md:gap-6.
+ * Layout ile aynı padding/gap kullanır: px-4 md:px-6, gap-10 md:gap-12.
  */
 function GridOverlayInner() {
   const searchParams = useSearchParams();
@@ -19,7 +19,7 @@ function GridOverlayInner() {
       aria-hidden
     >
       <div className="flex h-full w-full max-w-full px-4 md:px-6">
-        <div className="grid h-full w-full grid-cols-12 gap-4 md:gap-6">
+        <div className="grid h-full w-full grid-cols-12 gap-10 md:gap-12">
           {Array.from({ length: 12 }).map((_, i) => (
             <div
               key={i}
