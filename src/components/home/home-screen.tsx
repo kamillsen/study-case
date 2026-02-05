@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/product-card";
 import { BrowseByDressStyleSection } from "@/components/home/browse-by-dress-style";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
+import { NewsletterSection } from "@/components/home/newsletter-section";
 
 /**
  * Sitenin ana ekranı — ana sayfada render edilen bileşen.
@@ -165,6 +166,8 @@ export function HomeScreen() {
       <BrowseByDressStyleSection />
 
       <TestimonialsSection />
+
+      <NewsletterSection />
     </div>
   );
 }
