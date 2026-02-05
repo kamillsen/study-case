@@ -118,7 +118,8 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
 3. **Tasarım sistemi başlangıcı**
    - Tailwind config güncelleme (Figma'daki renkler)
    - Base styles ve typography
-   - shadcn/ui: `npx shadcn@latest init` → bileşenler `@/components/shadcn`; uygulama bileşenleri `components/ui/` içinde shadcn’i wrap ederek Figma’ya göre kullanılır.
+   - **Renk / tema token'ları:** Renkleri merkezi tek dosyada (örn. `theme.css`) tutmak için token'ları **komponentleri yaparken** belirleyebiliriz: Her komponentte ihtiyaç duyulan renkler için önce shadcn token'larını (`--primary`, `--card`, vb.) kullan; eksik kalan anlamlar için `theme.css`'e yeni değişken ekle. Komponentlerde sabit renk (hex/rgb) yazma, hep token/class kullan. Böylece palet komponentlerle birlikte büyür, sonradan toplu refactor gerekmez.
+   - shadcn/ui: `npx shadcn@latest init` → bileşenler `@/components/shadcn`; uygulama bileşenleri `components/ui/` içinde shadcn'i wrap ederek Figma'ya göre kullanılır.
 
 ---
 

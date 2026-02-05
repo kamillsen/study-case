@@ -69,6 +69,58 @@ Bu adımlar tamamlandığında Gün 1 hedefi karşılanır; sonrası Gün 2 (ür
 
 ---
 
+## Gün 2: Ürün Listeleme Ekranı ve API Entegrasyonu
+
+**Hedef:** Ana sayfa ve ürün listesinin tamamlanması.
+
+### Sabah (3–4 saat)
+
+1. **Ana Layout oluşturma**
+   - Header/Navigation component
+   - Footer component
+   - Responsive grid yapısı
+
+2. **Codegen ile üretilen API entegrasyonu**
+   - TanStack Query provider setup (App Router için `providers/query-provider.tsx` vb.)
+   - Codegen’in ürettiği query hook’larını kullanma (örn. ürün listesi için `useGetAllProductsQuery`)
+   - Loading, error, success state’leri
+
+3. **Product Listing component**
+   - ProductCard component tasarımı
+   - Grid layout (Figma’ya uygun)
+   - Responsive design implementasyonu
+
+### Öğleden Sonra (3–4 saat)
+
+1. **State management başlangıcı**
+   - Zustand store kurulumu (`stores/cart-store.ts`)
+   - Cart interface ve temel fonksiyonlar
+
+2. **Loading ve Error state’leri**
+   - Skeleton loader component
+   - Error boundary ve error display
+
+3. **Routing yapılandırması**
+   - Dynamic routes for product details (`app/products/[id]/page.tsx`)
+   - Layout optimizasyonu
+
+---
+
+## Önerilen Sıra (Gün 2 adımları)
+
+| Sıra | Adım | Çıktı |
+|------|------|--------|
+| 1 | TanStack Query provider (App Router) | Query’ler çalışır |
+| 2 | Ana Layout (Header, Footer, grid) | Sayfa iskeleti hazır |
+| 3 | Ürün listesi: codegen hook + ProductCard + grid | Ana sayfa ürün listesi |
+| 4 | Loading / error state’leri (skeleton, error UI) | UX iyileşir |
+| 5 | Zustand cart store + Cart interface | Sepet altyapısı hazır |
+| 6 | Dynamic route: `app/products/[id]/page.tsx` | Ürün detay sayfası yolu hazır |
+
+Bu adımlar tamamlandığında Gün 2 hedefi karşılanır; sonrası Gün 3 (ürün detay ve sepet işlevselliği).
+
+---
+
 ## Sonraki adımlar (planlandıkça eklenecek)
 
-<!-- Gün 2, Gün 3 vb. adımlar buraya eklenecek -->
+<!-- Gün 3, Gün 4 vb. adımlar buraya eklenecek -->
