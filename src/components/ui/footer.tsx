@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Facebook,
   Github,
@@ -127,18 +128,18 @@ export function Footer() {
         {/* Alt satır: telif + ödeme ikonları */}
         <div className="col-span-12 mt-6 flex flex-col gap-4 border-t border-border/40 pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:text-sm">
           <p>Shop.co © 2000-{new Date().getFullYear()} All Rights Reserved</p>
-          <div className="flex items-center gap-2">
-            <span className="rounded-md bg-white px-3 py-1 text-[11px] font-semibold text-foreground shadow-xs">
-              VISA
+          <div className="flex items-center gap-3" aria-label="Ödeme yöntemleri">
+            <span className="flex h-8 items-center rounded-md bg-white px-2.5 py-1.5 shadow-xs">
+              <Image src="/icons/payment/visa.svg" alt="Visa" width={40} height={24} className="h-5 w-auto object-contain" unoptimized />
             </span>
-            <span className="rounded-md bg-white px-3 py-1 text-[11px] font-semibold text-foreground shadow-xs">
-              MasterCard
+            <span className="flex h-8 items-center rounded-md bg-white px-2.5 py-1.5 shadow-xs">
+              <Image src="/icons/payment/mastercard.svg" alt="Mastercard" width={40} height={24} className="h-5 w-auto object-contain" unoptimized />
             </span>
-            <span className="rounded-md bg-white px-3 py-1 text-[11px] font-semibold text-foreground shadow-xs">
-              PayPal
+            <span className="flex h-8 items-center rounded-md bg-white px-2.5 py-1.5 shadow-xs">
+              <Image src="/icons/payment/paypal.svg" alt="PayPal" width={40} height={24} className="h-5 w-auto object-contain" unoptimized />
             </span>
-            <span className="rounded-md bg-white px-3 py-1 text-[11px] font-semibold text-foreground shadow-xs">
-              GPay
+            <span className="flex h-8 items-center rounded-md bg-white px-2.5 py-1.5 shadow-xs">
+              <Image src="/icons/payment/googlepay.svg" alt="Google Pay" width={40} height={24} className="h-5 w-auto object-contain" unoptimized />
             </span>
           </div>
         </div>
