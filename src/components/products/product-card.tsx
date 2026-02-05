@@ -14,7 +14,7 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "flex min-h-[340px] flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm",
+        "flex min-h-[340px] flex-col overflow-hidden bg-background text-foreground",
         className
       )}
     >

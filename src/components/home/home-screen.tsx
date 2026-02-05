@@ -4,6 +4,7 @@ import { ProductCard } from "@/components/products/product-card";
 import { BrowseByDressStyleSection } from "@/components/home/browse-by-dress-style";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { NewsletterSection } from "@/components/home/newsletter-section";
+import { NewArrivalsSection } from "@/components/home/new-arrivals-section";
 
 /**
  * Sitenin ana ekranı — ana sayfada render edilen bileşen.
@@ -114,27 +115,7 @@ export function HomeScreen() {
         </div>
       </section>
 
-      {/* NEW ARRIVALS — başlık ortada; kartlar eşit genişlik, ilk grid bitişinden son grid başlangıcına */}
-      <section className="col-span-12 mt-12 flex flex-col gap-6 px-10 md:mt-16 md:px-12">
-        <h2 className="text-center text-2xl font-bold uppercase tracking-wide text-foreground md:text-3xl">
-          New Arrivals
-        </h2>
-        <div className="grid grid-cols-12 gap-10 md:gap-12">
-          <div className="col-span-1 hidden sm:block" aria-hidden />
-          <div className="col-span-12 grid grid-cols-1 gap-10 sm:col-span-10 sm:-ml-10 sm:-mr-10 sm:grid-cols-4 md:gap-12 md:-ml-12 md:-mr-12">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </div>
-          <div className="col-span-1 hidden sm:block" aria-hidden />
-        </div>
-        <div className="flex justify-center">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/products">View All</Link>
-          </Button>
-        </div>
-      </section>
+      <NewArrivalsSection />
 
       {/* Ayırıcı çizgi — View All ile Top Selling arası eşit boşluk (üst/alt my-8) */}
       <div className="col-span-12 my-8 px-10 md:my-10 md:px-12" aria-hidden>

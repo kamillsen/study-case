@@ -89,10 +89,10 @@ export function TestimonialsSection() {
       className="col-span-12 mt-12 flex flex-col gap-8 px-10 md:mt-16 md:px-12"
       aria-labelledby="testimonials-heading"
     >
-      {/* Başlık ve ileri/geri butonları — aynı satırda, ilk gridin bitişiğine hizalı */}
+      {/* Başlık ve ileri/geri butonları — altındaki kart gridinin solu ile tam aynı hizadan başlar */}
       <div className="grid grid-cols-12 gap-10 md:gap-12">
         <div className="col-span-1 hidden sm:block" aria-hidden />
-        <div className="col-span-12 flex flex-wrap items-center justify-between gap-4 sm:col-span-10">
+        <div className="col-span-12 flex flex-wrap items-center justify-between gap-4 sm:col-span-10 sm:-ml-10 sm:-mr-10 md:-ml-12 md:-mr-12">
           <h2
             id="testimonials-heading"
             className="text-left text-2xl font-bold uppercase tracking-wide text-foreground md:text-3xl"

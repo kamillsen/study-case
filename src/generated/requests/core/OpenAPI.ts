@@ -40,8 +40,10 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-	BASE: 'https://fakestoreapi.com',
-	CREDENTIALS: 'include',
+	BASE: typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_BASE_URL
+		? process.env.NEXT_PUBLIC_API_BASE_URL
+		: 'https://fakestoreapi.com',
+	CREDENTIALS: 'omit',
 	ENCODE_PATH: undefined,
 	HEADERS: undefined,
 	PASSWORD: undefined,
