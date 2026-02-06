@@ -124,6 +124,60 @@ Bu adımlar tamamlandığında Gün 2 hedefi karşılanır; sonrası Gün 3 (ür
 
 ---
 
+## Gün 3: Ürün Detay ve Sepet İşlevselliği
+
+**Hedef:** Ürün detay sayfasının tamamlanması ve sepet ekranının (liste, adet güncelleme, toplam) çalışır hale getirilmesi.
+
+### Sabah (3–4 saat)
+
+1. **Ürün detay sayfası tamamlama**
+   - `useGetProductByIdQuery` ile tek ürün verisi (zaten `ProductDetailView` içinde kullanılıyor olabilir).
+   - Görsel, başlık, kategori, fiyat, açıklama alanları (Figma’ya uygun).
+   - "Sepete ekle" butonu → Zustand cart store’a `addToCart(product, quantity)` ile ekleme.
+   - Loading skeleton ve hata durumu (geçersiz id, API hatası).
+
+2. **Sepet sayfası UI (BasketView)**
+   - Sepetteki ürün listesi: her satırda görsel, ad, birim fiyat, adet, satır toplamı.
+   - Toplam tutar alanı (tüm satırların toplamı).
+   - Boş sepet durumu: "Sepetiniz boş" mesajı ve alışverişe dönüş linki.
+
+3. **Zustand sepet store genişletme**
+   - `cart-store.ts`: `addToCart` dışında `removeFromCart(id)`, `updateQuantity(id, quantity)` (veya `setItemQuantity`).
+   - Store yapısı: sepet öğeleri listesi (id, product bilgisi veya productId, quantity, birim fiyat).
+
+### Öğleden Sonra (3–4 saat)
+
+1. **Sepet listesi ve adet güncelleme**
+   - BasketView içinde store’dan liste okuma (`useCartStore((s) => s.items)` veya benzeri).
+   - Adet artır/azalt butonları veya input; değişiklikte `updateQuantity` çağrısı.
+   - Ürün çıkarma butonu → `removeFromCart(productId)`.
+
+2. **Toplam tutar hesaplama**
+   - Sepet listesinden toplam tutarı hesaplayan yardımcı (store içinde getter veya component içinde).
+   - Toplam alanının UI’da güncel gösterilmesi.
+
+3. **UX ve kenar durumları**
+   - Sepette 0 adet olunca ürünü listeden kaldırma veya "Sepetten çıkar" davranışı.
+   - Ürün detayda "Sepete eklendi" geri bildirimi (isteğe bağlı toast veya mesaj).
+   - Gerekirse `types/` içinde CartItem tipi (codegen’de yoksa).
+
+---
+
+## Önerilen Sıra (Gün 3 adımları)
+
+| Sıra | Adım | Çıktı |
+|------|------|--------|
+| 1 | Ürün detay: useGetProductByIdQuery + UI + "Sepete ekle" → cart store | Ürün detay sayfası çalışır |
+| 2 | BasketView: sepet listesi UI + toplam alanı + boş sepet durumu | Sepet sayfası görünür |
+| 3 | Cart store: removeFromCart, updateQuantity (ve gerekirse CartItem tipi) | Sepet state tam |
+| 4 | Sepet listesinde adet artır/azalt ve ürün çıkar | Sepet etkileşimli |
+| 5 | Toplam tutar hesaplama ve gösterimi | Sepet özeti hazır |
+| 6 | Kenar durumları (0 adet, geri bildirim) | UX iyileşir |
+
+Bu adımlar tamamlandığında Gün 3 hedefi karşılanır; sonrası Gün 4 (test, polish, README vb. planlandıkça eklenebilir).
+
+---
+
 ## Sonraki adımlar (planlandıkça eklenecek)
 
-<!-- Gün 3, Gün 4 vb. adımlar buraya eklenecek -->
+<!-- Gün 4, Gün 5 vb. adımlar buraya eklenecek -->
