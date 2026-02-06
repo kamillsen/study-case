@@ -2,6 +2,7 @@
 
 import { useGetProductByIdQuery } from '@/generated/queries';
 import { ProductDetailHero } from '@/components/products/product-detail-hero';
+import { ProductDetailTabs } from '@/components/products/product-detail-tabs';
 
 type ProductDetailViewProps = {
   productId: number;
@@ -52,6 +53,7 @@ export function ProductDetailView({ productId }: ProductDetailViewProps) {
   return (
     <div className="col-span-12">
       <ProductDetailHero product={data} />
+      <ProductDetailTabs product={data} />
     </div>
   );
 }
