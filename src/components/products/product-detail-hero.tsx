@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Check } from 'lucide-react';
 import { useState } from 'react';
 import type { Product } from '@/generated/queries';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,7 @@ const COLOR_DOTS = ['bg-foreground', 'bg-muted-foreground/60', 'bg-muted'] as co
 export function ProductDetailHero({ product }: ProductDetailHeroProps) {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<string>('M');
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
   const addToCart = useCartStore((s) => s.addToCart);
 
@@ -124,21 +126,38 @@ export function ProductDetailHero({ product }: ProductDetailHeroProps) {
           {product.description}
         </p>
 
-        {/* Select Colors (placeholder — API'de yok) — ● ● ● */}
+        {/* Select Colors (placeholder — API'de yok) — ● ● ●, seçilende tik */}
         <div className="flex flex-col gap-2">
           <span className="text-sm font-medium text-foreground">Select Colors:</span>
           <div className="flex gap-2">
-            {COLOR_DOTS.map((dotClass, i) => (
-              <button
-                key={i}
-                type="button"
-                className={cn(
-                  'h-8 w-8 rounded-full border-2 border-border transition-colors hover:border-primary',
-                  dotClass
-                )}
-                aria-label={`Renk seçenek ${i + 1}`}
-              />
-            ))}
+            {COLOR_DOTS.map((dotClass, i) => {
+              const isSelected = selectedColorIndex === i;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setSelectedColorIndex(i)}
+                  className={cn(
+                    'flex h-8 w-8 items-center justify-center rounded-full border-2 transition-colors hover:border-primary',
+                    isSelected ? 'border-primary' : 'border-border',
+                    dotClass
+                  )}
+                  aria-label={`Renk seçenek ${i + 1}`}
+                  aria-pressed={isSelected}
+                >
+                  {isSelected && (
+                    <Check
+                      className={cn(
+                        'size-4 shrink-0',
+                        dotClass === 'bg-muted' ? 'text-foreground' : 'text-white'
+                      )}
+                      strokeWidth={3}
+                      aria-hidden
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
