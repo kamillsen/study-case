@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products";
 import { BrowseByDressStyleSection } from "./browse-by-dress-style";
 import { TestimonialsSection } from "./testimonials-section";
-import { NewsletterSection } from "./newsletter-section";
 import { NewArrivalsSection } from "./new-arrivals-section";
 import { TopSellingSection } from "./top-selling-section";
 
@@ -121,7 +120,6 @@ export function HomeScreen() {
 
       <TestimonialsSection />
 
-      <NewsletterSection />
     </div>
   );
 }

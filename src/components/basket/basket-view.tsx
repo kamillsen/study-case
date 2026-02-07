@@ -6,7 +6,6 @@ import { useCartStore, type CartItem as CartItemType } from '@/stores/cart-store
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { NewsletterSection } from '@/components/home/newsletter-section';
 
 const DELIVERY_FEE = 15;
 const DISCOUNT_PERCENT = 20;
@@ -213,7 +212,6 @@ export function BasketView() {
       )}
 
       <Separator className="my-2" />
-      <NewsletterSection />
     </div>
   );
 }

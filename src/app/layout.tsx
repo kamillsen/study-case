@@ -46,14 +46,14 @@ export default function RootLayout({
   return (
     <html lang="tr" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${bebasNeue.variable} ${oswald.variable} flex min-h-screen flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${bebasNeue.variable} ${oswald.variable} flex min-h-screen min-w-0 flex-col overflow-x-hidden antialiased`}
       >
         {/* Her sayfada aynı üst başlık */}
         <Header />
         {/* Sayfaya göre değişen içerik — 12 grid: children kendi col-span'lerini kullanır */}
-        <main className="flex-1">
+        <main className="min-w-0 flex-1">
           <QueryProvider>
-            <div className="grid grid-cols-12 gap-10 px-10 py-6 md:gap-12 md:px-12">
+            <div className="grid max-w-full grid-cols-12 gap-10 px-10 py-6 md:gap-12 md:px-12">
               {children}
             </div>
           </QueryProvider>

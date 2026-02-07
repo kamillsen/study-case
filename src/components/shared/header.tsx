@@ -31,8 +31,8 @@ export function Header() {
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="grid h-16 grid-cols-12 items-center gap-10 px-10 md:gap-12 md:px-12">
+    <header className="sticky top-0 z-40 w-full min-w-0 max-w-full border-b bg-background">
+      <div className="grid h-16 max-w-full grid-cols-12 items-center gap-10 px-10 md:gap-12 md:px-12">
         <div className="col-span-12 flex items-center justify-between gap-3 sm:col-span-10 sm:col-start-2 sm:-ml-10 sm:-mr-10 md:-ml-12 md:-mr-12 md:gap-6">
           <div className="flex shrink-0 items-center">
             <Link

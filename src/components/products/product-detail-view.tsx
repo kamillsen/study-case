@@ -1,7 +1,6 @@
 'use client';
 
 import { useGetProductByIdQuery } from '@/generated/queries';
-import { NewsletterSection } from '@/components/home/newsletter-section';
 import { ProductDetailHero } from '@/components/products/product-detail-hero';
 import { ProductDetailTabs } from '@/components/products/product-detail-tabs';
 import { ProductDetailYouMightAlsoLike } from '@/components/products/product-detail-you-might-also-like';
@@ -59,7 +58,6 @@ export function ProductDetailView({ productId }: ProductDetailViewProps) {
         <ProductDetailTabs product={data} />
         <ProductDetailYouMightAlsoLike currentProductId={data.id as number} />
       </div>
-      <NewsletterSection />
     </>
   );
 }
