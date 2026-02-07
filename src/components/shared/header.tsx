@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Search, ShoppingCart, ChevronDown } from "lucide-react";
+import { Menu, Search, ShoppingCart, ChevronDown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -78,6 +78,11 @@ export function Header() {
             <Button variant="ghost" size="icon" aria-label="Sepet" asChild>
               <Link href="/basket">
                 <ShoppingCart className="size-5" />
+              </Link>
+            </Button>
+            <Button variant="ghost" size="icon" aria-label="Profil" asChild>
+              <Link href="/profile">
+                <User className="size-5" />
               </Link>
             </Button>
             <Sheet>

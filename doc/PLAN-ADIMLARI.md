@@ -174,7 +174,67 @@ Bu adımlar tamamlandığında Gün 2 hedefi karşılanır; sonrası Gün 3 (ür
 | 5 | Toplam tutar hesaplama ve gösterimi | Sepet özeti hazır |
 | 6 | Kenar durumları (0 adet, geri bildirim) | UX iyileşir |
 
-Bu adımlar tamamlandığında Gün 3 hedefi karşılanır; sonrası Gün 4 (test, polish, README vb. planlandıkça eklenebilir).
+Bu adımlar tamamlandığında Gün 3 hedefi karşılanır; sonrası Ürünler ekranı (Shop/Casual sayfası).
+
+---
+
+## Ürünler Ekranı (Shop / Casual — producst.txt)
+
+**Hedef:** `/products` sayfasında filtre paneli, ürün grid’i, sıralama ve sayfalama ile producst.txt’deki ekranın tamamlanması.
+
+**Referans:** `doc/producst.txt` — breadcrumb, sol filtre paneli, sağda kategori başlığı + “Showing X–Y of Z” + Sort + 3 sütun ürün grid’i, pagination, newsletter, footer.
+
+### Sabah (3–4 saat)
+
+1. **Breadcrumb ve sayfa iskeleti**
+   - Breadcrumb: Home > Shop (veya Home > Casual / kategori adı); `products/page.tsx` veya ortak bileşen.
+   - İki sütun layout: sol (filtre paneli), sağ (başlık + “Showing…” + Sort + grid).
+
+2. **Sol panel — Filtre kutusu**
+   - “Filters” başlığı + [≡] ikonu (mobilde paneli aç/kapa; masaüstünde sabit).
+   - Kategori listesi: T-shirts, Shorts, Shirts, Hoodie, Jeans (her biri `>` ile; link veya filtre).
+   - Fiyat aralığı: “Price” + slider veya iki input ($50–$200).
+   - Renkler: “Colors” + renk daireleri (●).
+   - Beden: “Size” — XS, S, M, L, XL, XXL (checkbox/buton).
+   - Dress Style: Casual, Formal, Party, Gym (her biri `>`).
+   - [ Apply Filter ] butonu.
+
+3. **Sağ alan — Başlık ve kontroller**
+   - Kategori başlığı (örn. “Casual”).
+   - “Showing 1–10 of 100” (veya toplam ürün sayısı).
+   - “Sort by: Most Popular ▼” dropdown (Most Popular, Price Low–High, Price High–Low, Newest vb.).
+
+### Öğleden Sonra (3–4 saat)
+
+1. **Ürün grid’i ve filtreleme**
+   - Mevcut `ProductGridCard` ile 3 sütun grid (lg:grid-cols-3).
+   - Client-side filtre: kategori (API `category`), fiyat min/max; renk/beden/dress style API’de yoksa mock veya sonra bağlanır.
+   - Sort: seçilen sıralamaya göre listeyi sırala.
+
+2. **Pagination**
+   - “← Previous” ve “Next →” butonları.
+   - Sayfa numaraları: 1, 2, 3, …, 8, 9, 10 (veya toplam sayfa sayısına göre).
+   - Sayfa başına 10 (veya 12) ürün; “Showing X–Y of Z” ile uyumlu.
+
+3. **Responsive ve navigasyon**
+   - Mobilde filtre paneli: Sheet/Drawer (Filters [≡] ile açılır).
+   - Header Shop menüsünde “Tüm ürünler” → `/products`.
+   - Ana sayfa New Arrivals / Top Selling “View All” → `/products`.
+
+---
+
+## Önerilen Sıra (Ürünler ekranı adımları)
+
+| Sıra | Adım | Çıktı |
+|------|------|--------|
+| 1 | Breadcrumb (Home > Shop / Casual) + 2 sütun layout (sol filtre, sağ içerik) | Sayfa iskeleti hazır |
+| 2 | Sol panel: Filters başlığı + [≡], kategori listesi (T-shirts, Shorts, …), Price, Colors, Size, Dress Style, Apply Filter | Filtre UI hazır |
+| 3 | Sağ üst: Kategori başlığı + “Showing X–Y of Z” + Sort by dropdown | Kontroller hazır |
+| 4 | Ürün grid’i (ProductGridCard, 3 sütun) + client-side filtre (kategori, fiyat) + sort | Liste çalışır |
+| 5 | Pagination (Previous, sayfa numaraları, Next) + “Showing” ile uyumlu | Sayfalama çalışır |
+| 6 | Mobilde filtre paneli Sheet/Drawer; Header Shop → “Tüm ürünler” + View All → `/products` | Navigasyon ve responsive tamam |
+
+Bu adımlar tamamlandığında Ürünler ekranı (producst.txt) karşılanır; sonrası Gün 4 (test, polish, README vb.) planlandıkça eklenebilir.
 
 ---
 
