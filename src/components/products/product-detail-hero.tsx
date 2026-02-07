@@ -14,6 +14,7 @@ type ProductDetailHeroProps = {
 
 const SIZES = ['S', 'M', 'L', 'XL'] as const;
 const COLOR_DOTS = ['bg-foreground', 'bg-muted-foreground/60', 'bg-muted'] as const;
+const COLOR_LABELS = ['Black', 'Gray', 'White'] as const;
 
 export function ProductDetailHero({ product }: ProductDetailHeroProps) {
   const [quantity, setQuantity] = useState(1);
@@ -23,7 +24,11 @@ export function ProductDetailHero({ product }: ProductDetailHeroProps) {
   const addToCart = useCartStore((s) => s.addToCart);
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
+    const color = COLOR_LABELS[selectedColorIndex] ?? '';
+    addToCart(product, quantity, {
+      size: selectedSize,
+      color,
+    });
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2500);
   };

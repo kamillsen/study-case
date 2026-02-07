@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Menu, Search, ShoppingCart, ChevronDown, User } from "lucide-react";
+import { useCartStore } from "@/stores/cart-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -26,6 +27,9 @@ const shopLinks = [
 ];
 
 export function Header() {
+  const items = useCartStore((s) => s.items);
+  const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="grid h-16 grid-cols-12 items-center gap-10 px-10 md:gap-12 md:px-12">
@@ -75,9 +79,20 @@ export function Header() {
           </div>
 
           <div className="flex shrink-0 items-center gap-1">
-            <Button variant="ghost" size="icon" aria-label="Sepet" asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label={cartCount > 0 ? `Sepet (${cartCount} ürün)` : "Sepet"}
+              asChild
+              className="relative"
+            >
               <Link href="/basket">
                 <ShoppingCart className="size-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-foreground px-1.5 text-[10px] font-semibold text-background">
+                    {cartCount > 99 ? "99+" : cartCount}
+                  </span>
+                )}
               </Link>
             </Button>
             <Button variant="ghost" size="icon" aria-label="Profil" asChild>
