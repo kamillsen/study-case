@@ -238,6 +238,68 @@ Bu adımlar tamamlandığında Ürünler ekranı (producst.txt) karşılanır; s
 
 ---
 
+## Sepet Sayfası (Cart — basket.txt)
+
+**Hedef:** `/basket` sayfasında `doc/basket.txt` tasarımına uygun sepet ekranı: sol tarafta ürün listesi (görsel, ad, beden/renk, fiyat, adet ±, çöp), sağ tarafta Order Summary (subtotal, indirim, kargo, toplam, promo code, checkout).
+
+**Referans:** `doc/basket.txt` — breadcrumb (Home > Cart), YOUR CART başlığı, 2 sütun layout (sol: sepet kalemleri, sağ: Order Summary), her kalemde görsel + başlık + Size/Color + fiyat + [−] adet [+] + çöp ikonu; sağda Subtotal, Discount (-20%), Delivery Fee, Total, promo code alanı + Apply, “Go to Checkout →” butonu; sayfa altında newsletter, sonra footer.
+
+### Sabah (3–4 saat)
+
+1. **Breadcrumb ve sayfa iskeleti**
+   - Breadcrumb: Home > Cart (link + mevcut sayfa).
+   - Ana başlık: “YOUR CART”.
+   - İki sütun layout: sol (sepet listesi, geniş), sağ (Order Summary, sabit genişlik veya max-width).
+
+2. **Sol panel — Sepet kalemleri (CartItem)**
+   - Her satır: ürün görseli (Image), ürün adı (title), Size: … / Color: … (store’da yoksa mock veya opsiyonel alan), birim fiyat ($…).
+   - Adet: [ − ] sayı [ + ] butonları → `increment(productId)` / `decrement(productId)` (mevcut cart-store).
+   - Çöp ikonu → `removeFromCart(productId)`.
+   - Kalemler arası ayırıcı çizgi (border veya hr).
+   - Veri: `useCartStore((s) => s.items)`; her item: `product` (id, title, price, image) + `quantity`.
+
+3. **Boş sepet durumu**
+   - Sepette ürün yoksa: “Sepetiniz boş” (veya benzeri) mesajı + “Alışverişe dön” / “Shop Now” linki (`/products` veya `/`).
+
+### Öğleden Sonra (3–4 saat)
+
+1. **Sağ panel — Order Summary**
+   - Kutu: başlık “Order Summary”.
+   - Subtotal: sepetteki tüm kalemlerin (price × quantity) toplamı.
+   - Discount (-20%): isteğe bağlı; sabit yüzde veya promo’ya göre (ilk aşamada sabit -20% veya 0).
+   - Delivery Fee: sabit (örn. $15) veya ücretsiz kargo eşiği.
+   - Çizgi, sonra Total.
+   - “Add promo code” input + [Apply] butonu (isteğe bağlı; başta disabled veya mock).
+   - “Go to Checkout →” butonu (primary; checkout sayfası yoksa `#` veya disabled + tooltip).
+
+2. **Toplam hesaplama**
+   - Subtotal: store’daki `items` üzerinden `item.product.price * item.quantity` toplamı.
+   - Discount / Delivery / Total: seçilen kurala göre (örn. Total = Subtotal − Discount + Delivery).
+
+3. **Responsive**
+   - Mobilde: sepet listesi üstte, Order Summary altta (tek sütun) veya sabit alt özet kutusu.
+   - Masaüstü: sol ~2/3, sağ ~1/3 veya grid-cols-1 lg:grid-cols-3 gibi.
+
+4. **Newsletter ve sayfa sonu**
+   - Sepet içeriğinin altında mevcut `NewsletterSection` (varsa) kullanılır; sonra footer (layout’tan geliyorsa ekstra iş yok).
+
+---
+
+## Önerilen Sıra (Sepet sayfası adımları)
+
+| Sıra | Adım | Çıktı |
+|------|------|--------|
+| 1 | Breadcrumb (Home > Cart) + “YOUR CART” başlığı + 2 sütun layout (sol liste, sağ özet) | Sepet sayfa iskeleti |
+| 2 | CartItem bileşeni: görsel, başlık, Size/Color (mock), fiyat, [−] adet [+], çöp ikonu; store’dan items oku | Sepet listesi görünür |
+| 3 | Boş sepet: mesaj + “Alışverişe dön” linki | Boş sepet UX |
+| 4 | Order Summary: Subtotal, Discount (-20%), Delivery Fee, Total hesaplama ve gösterimi | Özet kutusu hazır |
+| 5 | Promo code alanı (mock/optional) + “Go to Checkout →” butonu | Checkout’a hazırlık |
+| 6 | Responsive: mobilde tek sütun / özet altta; newsletter + footer | Sepet sayfası basket.txt ile uyumlu |
+
+Bu adımlar tamamlandığında Sepet sayfası (basket.txt) karşılanır; sonrası Gün 4 (test, polish, README) veya Checkout sayfası planlanabilir.
+
+---
+
 ## Sonraki adımlar (planlandıkça eklenecek)
 
-<!-- Gün 4, Gün 5 vb. adımlar buraya eklenecek -->
+<!-- Gün 4, Checkout, Profil vb. adımlar buraya eklenecek -->
