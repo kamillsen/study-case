@@ -3,6 +3,10 @@
 import { ChevronRight, PanelLeftClose } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import {
+  type ProductsFilterState,
+  DEFAULT_PRODUCTS_FILTERS,
+} from '@/features/products';
 import { cn } from '@/lib/utils';
 
 const CATEGORIES = [
@@ -33,21 +37,8 @@ const COLOR_DOTS = [
   'bg-pink-400',
 ];
 
-export type ProductsFilterState = {
-  category: string | null;
-  priceMin: number;
-  priceMax: number;
-  selectedSizes: string[];
-  dressStyle: string | null;
-};
-
-const DEFAULT_FILTERS: ProductsFilterState = {
-  category: null,
-  priceMin: 0,
-  priceMax: 500,
-  selectedSizes: [],
-  dressStyle: null,
-};
+export type { ProductsFilterState };
+export const DEFAULT_FILTERS = DEFAULT_PRODUCTS_FILTERS;
 
 type ProductsFiltersProps = {
   filters: ProductsFilterState;
@@ -220,5 +211,3 @@ export function ProductsFilters({
 
   return <div className={cn(className)}>{panel}</div>;
 }
-
-export { DEFAULT_FILTERS };

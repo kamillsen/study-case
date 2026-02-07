@@ -1,4 +1,3 @@
-export { HomeScreen } from "./home-screen";
 export { BrowseByDressStyleSection } from "./browse-by-dress-style";
 export { NewArrivalsSection } from "./new-arrivals-section";
 export { TestimonialsSection } from "./testimonials-section";

@@ -1,1 +1,1 @@
-export { BasketView } from "./basket-view";
+export { BasketCartItem } from "./basket-cart-item";

@@ -1,7 +1,10 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { ProductDetailView } from '@/components/products';
+import { useGetProductByIdQuery } from '@/generated/queries';
+import { ProductDetailHero } from '@/components/products/product-detail-hero';
+import { ProductDetailTabs } from '@/components/products/product-detail-tabs';
+import { ProductDetailYouMightAlsoLike } from '@/components/products/product-detail-you-might-also-like';
 
 /**
  * Ürünler sayfası sentetik ID kullanıyor (1000, 1001, 2000…).
@@ -16,6 +19,52 @@ export default function ProductPage() {
   const params = useParams<{ id: string }>();
   const urlId = Number(params.id);
   const apiId = toApiProductId(urlId);
+  const { data, isLoading, isError, error } = useGetProductByIdQuery(apiId);
 
-  return <ProductDetailView productId={apiId} />;
+  if (Number.isNaN(apiId)) {
+    return (
+      <div className="col-span-12">
+        <p className="text-destructive">Geçersiz ürün ID.</p>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="col-span-12">
+        <div className="mb-4 h-6 w-40 animate-pulse rounded bg-muted" />
+        <div className="grid grid-cols-12 gap-8 md:gap-10 lg:gap-12">
+          <div className="col-span-12 md:col-span-5">
+            <div className="aspect-square w-full animate-pulse rounded-lg bg-muted" />
+          </div>
+          <div className="col-span-12 flex flex-col gap-5 md:col-span-7">
+            <div className="h-8 w-3/4 animate-pulse rounded bg-muted" />
+            <div className="h-4 w-24 animate-pulse rounded bg-muted" />
+            <div className="h-6 w-20 animate-pulse rounded bg-muted" />
+            <div className="h-4 w-full animate-pulse rounded bg-muted" />
+            <div className="mt-4 h-10 w-32 animate-pulse rounded-full bg-muted" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <div className="col-span-12">
+        <h1 className="mb-4 text-2xl font-semibold">Ürün Detay</h1>
+        <p className="text-destructive">
+          Ürün yüklenirken bir hata oluştu: {error?.message ?? 'Bilinmeyen hata'}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="col-span-12">
+      <ProductDetailHero product={data} />
+      <ProductDetailTabs product={data} />
+      <ProductDetailYouMightAlsoLike currentProductId={data.id as number} />
+    </div>
+  );
 }

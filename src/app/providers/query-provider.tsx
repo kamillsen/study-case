@@ -13,12 +13,13 @@ type QueryProviderProps = {
  */
 export function QueryProvider({ children }: QueryProviderProps) {
   const [queryClient] = React.useState(
-    () =>  
+    () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 1000 * 60, // 1 dakika
+            staleTime: 60 * 1000, // 1 dakika — merkezi cache varsayılanı
             refetchOnWindowFocus: false,
+            retry: 1,
           },
         },
       })

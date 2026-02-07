@@ -80,6 +80,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Design tokens — typography & spacing (merkezi güncelleme için) */
+  --font-heading: var(--font-geist-sans);
+  --text-heading-xl: 1.875rem;
+  --text-heading-lg: 1.5rem;
+  --text-heading-md: 1.25rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --space-section: 2.5rem;
+  --space-section-md: 3rem;
+  --radius-card: var(--radius-lg);
 }
 
 .dark {
@@ -114,6 +125,35 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Design tokens — semantik sınıflar (tek yerden güncelleme) */
+.heading-page {
+  font-size: var(--text-heading-xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+.heading-section {
+  font-size: var(--text-heading-md);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+.text-body {
+  font-size: var(--text-body);
+  color: var(--foreground);
+}
+.text-body-muted {
+  font-size: var(--text-body-sm);
+  color: var(--muted-foreground);
+}
+.surface-card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius-card);
 }
 
 @layer base {

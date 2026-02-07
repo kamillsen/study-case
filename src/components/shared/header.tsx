@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { Menu, Search, ShoppingCart, ChevronDown, User } from "lucide-react";
-import { useCartStore } from "@/stores/cart-store";
+import { useAppSelector } from "@/store/hooks";
+import { selectCartCount } from "@/store/selectors";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -27,8 +28,7 @@ const shopLinks = [
 ];
 
 export function Header() {
-  const items = useCartStore((s) => s.items);
-  const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+  const cartCount = useAppSelector(selectCartCount);
 
   return (
     <header className="sticky top-0 z-40 w-full min-w-0 max-w-full border-b bg-background">

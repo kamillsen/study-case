@@ -5,7 +5,8 @@ import { Check } from 'lucide-react';
 import { useState } from 'react';
 import type { Product } from '@/generated/queries';
 import { Button } from '@/components/ui/button';
-import { useCartStore } from '@/stores/cart-store';
+import { useAppDispatch } from '@/store/hooks';
+import { addToCart } from '@/store/slices/cartSlice';
 import { cn } from '@/lib/utils';
 
 type ProductDetailHeroProps = {
@@ -21,14 +22,18 @@ export function ProductDetailHero({ product }: ProductDetailHeroProps) {
   const [selectedSize, setSelectedSize] = useState<string>('M');
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [addedToCart, setAddedToCart] = useState(false);
-  const addToCart = useCartStore((s) => s.addToCart);
+  const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {
     const color = COLOR_LABELS[selectedColorIndex] ?? '';
-    addToCart(product, quantity, {
-      size: selectedSize,
-      color,
-    });
+    dispatch(
+      addToCart({
+        product,
+        quantity,
+        size: selectedSize,
+        color,
+      })
+    );
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2500);
   };

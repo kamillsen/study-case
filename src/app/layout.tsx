@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Playfair_Display, Bebas_Neue, Oswald } from "next/font/google";
 import { Header, Footer, GridOverlay } from "@/components/shared";
 import { QueryProvider } from "@/app/providers/query-provider";
+import { ReduxProvider } from "@/app/providers/redux-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -48,20 +49,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${bebasNeue.variable} ${oswald.variable} flex min-h-screen min-w-0 flex-col overflow-x-hidden antialiased`}
       >
-        {/* Her sayfada aynı üst başlık */}
-        <Header />
-        {/* Sayfaya göre değişen içerik — 12 grid: children kendi col-span'lerini kullanır */}
-        <main className="min-w-0 flex-1">
+        <ReduxProvider>
           <QueryProvider>
-            <div className="grid max-w-full grid-cols-12 gap-10 px-10 py-6 md:gap-12 md:px-12">
-              {children}
-            </div>
+            {/* Her sayfada aynı üst başlık */}
+            <Header />
+            {/* Sayfaya göre değişen içerik — 12 grid: children kendi col-span'lerini kullanır */}
+            <main className="min-w-0 flex-1">
+              <div className="grid max-w-full grid-cols-12 gap-10 px-10 py-6 md:gap-12 md:px-12">
+                {children}
+              </div>
+            </main>
+            {/* Her sayfada aynı alt bilgi */}
+            <Footer />
+            {/* ?grid=1 ile 12 grid çizgilerini göster */}
+            <GridOverlay />
           </QueryProvider>
-        </main>
-        {/* Her sayfada aynı alt bilgi */}
-        <Footer />
-        {/* ?grid=1 ile 12 grid çizgilerini göster */}
-        <GridOverlay />
+        </ReduxProvider>
       </body>
     </html>
   );

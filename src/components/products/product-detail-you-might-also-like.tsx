@@ -10,7 +10,7 @@ type ProductDetailYouMightAlsoLikeProps = {
 function YouMightAlsoLikeSkeleton() {
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-      {Array.from({ length: 4 }).map((i) => (
+      {Array.from({ length: 4 }).map((_, i) => (
         <div
           key={i}
           className="flex min-h-[340px] flex-col overflow-hidden rounded-lg border border-border bg-muted/40 animate-pulse"
