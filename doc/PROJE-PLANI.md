@@ -18,6 +18,18 @@
 - https://fakestoreapi.com/docs
 - https://fakestoreapi.com/docs-data (OpenAPI 3.1.0 spec — codegen için kullanılacak)
 
+### Ürün tipi (Product)
+`GET /products` ve `GET /products/{id}` cevaplarında her ürün bu alanlarla geliyor:
+
+| Alan | Tip | Açıklama |
+|------|-----|----------|
+| id | number | Ürün ID |
+| title | string | Ürün adı |
+| price | number | Fiyat (float) |
+| description | string | Açıklama |
+| category | string | Kategori |
+| image | string | Görsel URL'i |
+
 ### Tasarım
 - Figma: [E-commerce Website Template](https://www.figma.com/design/Zr5KLBmfZQeV0goyFG9gmy/E-commerce-Website-Template–Freebie—Community-?node-id=0-1&t=TPzT7NNxwczvmZOT-1)
 - Dikkat: renk paleti, grid, boşluklar (margins/paddings), tipografi, buton stilleri. Responsive, Tailwind CSS.
@@ -64,14 +76,17 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
    ```
    src/
    ├── app/                    # Next.js App Router
-   │   ├── (routes)/          # Route grupları
    │   ├── layout.tsx         # Root layout
-   │   └── page.tsx           # Home page
-   ├── components/            # Reusable components
-   │   ├── shadcn/            # shadcn CLI çıktısı — dokunulmaz (kütüphane katmanı)
-   │   ├── ui/                # Bizim katman: Figma’ya göre özelleştirilmiş bileşenler (shadcn’i wrap eder)
-   │   ├── products/          # Product-related components
-   │   └── cart/              # Cart components
+   │   ├── (main)/            # Route group (URL'de görünmez): page, products, cart, profile
+   │   └── providers/
+   ├── components/            # Bileşenler (sayfa bazlı + ortak)
+   │   ├── shared/            # Header, Footer, GridOverlay (ortak)
+   │   ├── home/              # Ana sayfa bileşenleri
+   │   ├── products/          # Ürün listesi, kart, detay
+   │   ├── cart/              # Sepet bileşenleri
+   │   ├── profile/           # Profil bileşenleri
+   │   ├── shadcn/            # shadcn CLI çıktısı — dokunulmaz
+   │   └── ui/                # Figma’ya göre özelleştirilmiş bileşenler (shadcn’i wrap eder)
    ├── hooks/                 # Custom hooks
    ├── lib/                   # Utilities, configs
    ├── generated/             # OpenAPI Codegen çıktısı (API client, query hooks)
@@ -82,7 +97,7 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
 
    **UI bileşenleri (shadcn) organizasyonu (Seçenek B):**
    - **`components/shadcn/`** — shadcn CLI bileşenleri buraya eklenir. Bu dosyalara el ile değişiklik yapılmaz; güncelleme/ekleme sadece CLI ile (`npx shadcn@latest add ...`). Init sırasında "Where should we add the components?" → `@/components/shadcn` seçilir.
-   - **`components/ui/`** — Uygulama katmanı: shadcn bileşenlerini import edip Figma’ya göre stil/variant veren wrapper’lar. Tüm özelleştirmeler burada yapılır; `products/` ve `cart/` buradaki bileşenleri kullanır.
+   - **`components/ui/`** — Uygulama katmanı: shadcn bileşenlerini import edip Figma’ya göre stil/variant veren wrapper’lar. Tüm özelleştirmeler burada yapılır; `components/products/` ve `components/cart/` buradaki bileşenleri kullanır.
    - Örnek: `ui/button.tsx` → `@/components/shadcn/button` import eder, className/variant’ları Figma paletine göre tanımlar ve export eder.
 
 3. **Environment variables konfigürasyonu**
@@ -106,7 +121,8 @@ Kod kalitesi, bileşen yapısı, Zustand kullanımı, API entegrasyonu, Figma uy
 3. **Tasarım sistemi başlangıcı**
    - Tailwind config güncelleme (Figma'daki renkler)
    - Base styles ve typography
-   - shadcn/ui: `npx shadcn@latest init` → bileşenler `@/components/shadcn`; uygulama bileşenleri `components/ui/` içinde shadcn’i wrap ederek Figma’ya göre kullanılır.
+   - **Renk / tema token'ları:** Renkleri merkezi tek dosyada (örn. `theme.css`) tutmak için token'ları **komponentleri yaparken** belirleyebiliriz: Her komponentte ihtiyaç duyulan renkler için önce shadcn token'larını (`--primary`, `--card`, vb.) kullan; eksik kalan anlamlar için `theme.css`'e yeni değişken ekle. Komponentlerde sabit renk (hex/rgb) yazma, hep token/class kullan. Böylece palet komponentlerle birlikte büyür, sonradan toplu refactor gerekmez.
+   - shadcn/ui: `npx shadcn@latest init` → bileşenler `@/components/shadcn`; uygulama bileşenleri `components/ui/` içinde shadcn'i wrap ederek Figma'ya göre kullanılır.
 
 ---
 
@@ -365,3 +381,6 @@ npm install -D openapi-react-query-codegen prettier
 **Codegen için:** Spec olarak projedeki `docs-data.json` (Fake Store API OpenAPI 3.1.0) kullanılacak. Codegen config ve çıktı klasörü (örn. `src/generated/`) proje yapısına göre ayarlanmalı.
 
 Bu planı takip ederek hem zamanında bitirebilirsin hem de Wibesoft teknik değerlendirme dokümanındaki tüm gereksinimleri karşılayan bir proje teslim edebilirsin. OpenAPI React Query Codegen kurulumu için ilgili repo dokümantasyonuna ve örnek config'e bak.
+
+
+http://localhost:3000/?grid=1
